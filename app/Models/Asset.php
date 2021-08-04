@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Supplier;
+use App\Models\Warehouse;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Asset extends Model
 {
@@ -20,4 +22,14 @@ class Asset extends Model
     ];
 
     protected $table = 'rf_assets';
+
+    public function warehouses()
+    {
+        return $this->belongsTo(Warehouse::class,'warehouse_id', 'id');
+    }
+
+    public function suppliers()
+    {
+        return $this->belongsTo(Supplier::class,'supplier_id', 'id');
+    }
 }
