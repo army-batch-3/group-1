@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Employee;
+use App\Models\Transportation;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Driver extends Model
 {
@@ -15,5 +17,15 @@ class Driver extends Model
         'employee_id'
     ];
 
-    protected $table = 'rf_drivers';
+    protected $table = 'tr_drivers';
+
+    public function transportations()
+    {
+        return $this->belongsTo(Transportation::class,'transportation_id', 'id');
+    }
+
+    public function employees()
+    {
+        return $this->belongsTo(Employee::class,'employee_id', 'id');
+    }
 }
