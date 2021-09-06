@@ -1,13 +1,13 @@
 @extends('layouts.app', [
     'class' => '',
-    'elementActive' => 'upgrade'
+    'elementActive' => 'employees'
 ])
 
 @section('content')
     <div class="content">
         <div class="row">
             <div class="col-md-8 ml-auto mr-auto">
-                <div class="card card-upgrade">
+                {{-- <div class="card card-upgrade">
                     <div class="card-header text-center">
                         <h4 class="card-title">Paper Dashboard PRO</h3>
                             <p class="card-category">Are you looking for more components? Please check our Premium Version
@@ -132,7 +132,7 @@
                             </table>
                         </div>
                     </div>
-                </div>
+                </div> --}}
             </div>
         </div>
     </div>
