@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TranportationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,4 +37,8 @@ Route::group(['middleware' => 'auth'], function () {
 Route::group(['middleware' => 'auth'], function () {
 	Route::get('{page}', ['as' => 'page.index', 'uses' => 'App\Http\Controllers\PageController@index']);
 });
+
+Route::post('/test', 'App\Http\Controllers\PageController@test')->name('test');
+
+Route::post('/transpo', [TranportationController::class, 'test'])->name('transpo');
 
