@@ -9,124 +9,118 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="card-title"> Simple Table</h4>
+                        <h4 class="card-title">Users</h4>
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                            Add New User
+                        </button>
                     </div>
                     <div class="card-body">
-                        <div class="table-responsive">
+                        <div class="">
                             <table class="table">
                                 <thead class=" text-primary">
                                     <th>
                                         Name
                                     </th>
                                     <th>
-                                        Country
+                                        Email
                                     </th>
-                                    <th>
-                                        City
-                                    </th>
-                                    <th class="text-right">
-                                        Salary
+                                    <th class="text-center">
+                                        Actions
                                     </th>
                                 </thead>
+                                
                                 <tbody>
+                                    @foreach ($data as $entity)
                                     <tr>
                                         <td>
-                                            Dakota Rice
+                                            {{ $entity->name }}
                                         </td>
                                         <td>
-                                            Niger
+                                            {{ $entity->email }}
                                         </td>
                                         <td>
-                                            Oud-Turnhout
-                                        </td>
-                                        <td class="text-right">
-                                            $36,738
+                                            <div class="row d-flex justify-content-center">
+                                                <button class="btn btn-warning btn-fab btn-icon btn-sm btn-round" data-toggle="modal" data-target="#editModal">
+                                                    <i class="fa fa-edit"></i>
+                                                </button>
+                                                <div class="px-2"></div>
+                                                <button class="btn btn-danger btn-fab btn-icon btn-sm btn-round" data-toggle="modal" data-target="#deleteModal">
+                                                    <i class="fa fa-trash"></i>
+                                                </button>
+                                            </div>
+                                            
                                         </td>
                                     </tr>
-                                    <tr>
-                                        <td>
-                                            Minerva Hooper
-                                        </td>
-                                        <td>
-                                            Curaçao
-                                        </td>
-                                        <td>
-                                            Sinaai-Waas
-                                        </td>
-                                        <td class="text-right">
-                                            $23,789
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            Sage Rodriguez
-                                        </td>
-                                        <td>
-                                            Netherlands
-                                        </td>
-                                        <td>
-                                            Baileux
-                                        </td>
-                                        <td class="text-right">
-                                            $56,142
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            Philip Chaney
-                                        </td>
-                                        <td>
-                                            Korea, South
-                                        </td>
-                                        <td>
-                                            Overland Park
-                                        </td>
-                                        <td class="text-right">
-                                            $38,735
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            Doris Greene
-                                        </td>
-                                        <td>
-                                            Malawi
-                                        </td>
-                                        <td>
-                                            Feldkirchen in Kärnten
-                                        </td>
-                                        <td class="text-right">
-                                            $63,542
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            Mason Porter
-                                        </td>
-                                        <td>
-                                            Chile
-                                        </td>
-                                        <td>
-                                            Gloucester
-                                        </td>
-                                        <td class="text-right">
-                                            $78,615
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            Jon Porter
-                                        </td>
-                                        <td>
-                                            Portugal
-                                        </td>
-                                        <td>
-                                            Gloucester
-                                        </td>
-                                        <td class="text-right">
-                                            $98,615
-                                        </td>
-                                    </tr>
+
+                                    <!-- Edit Modal -->
+                                    <div class="modal fade " id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+                                        <form method="POST" action="{{ URL::route('test') }}">
+                                            <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                <h5 class="modal-title" id="editModalLabel">Modal title</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    @csrf
+                                                    <div class="mb-3">
+                                                    <label class="form-label">Name</label>
+                                                    <input type="text" class="form-control" name="name" value="{{ $entity->name }}" required> 
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label class="form-label">Email</label>
+                                                        <input type="email" class="form-control" name="email" value="{{ $entity->email }}" required> 
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <div class="left-side">
+                                                        <button type="button" class="btn btn-default btn-link" data-dismiss="modal">Close</button>
+                                                    </div>
+                                                    <div class="divider"></div>
+                                                    <div class="right-side">
+                                                        <button type="submit" class="btn btn-warning btn-link">Submit</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            </div>
+                                        </form>
+                                    </div>
+
+                                    <!-- Delete Modal -->
+                                    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+                                        <form method="POST" action="{{ URL::route('test') }}">
+                                            <div class="modal-dialog modal-sm" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                <h5 class="modal-title" id="deleteModalLabel">Modal title</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    @csrf
+                                                    <div class="col">
+                                                        <p>Are you sure you want to delete this User?</p>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <div class="left-side">
+                                                        <button type="button" class="btn btn-default btn-link" data-dismiss="modal">Cancel</button>
+                                                    </div>
+                                                    <div class="divider"></div>
+                                                    <div class="right-side">
+                                                        <button type="submit" class="btn btn-danger btn-link">Delete</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    
+                                    @endforeach
+                                    
                                 </tbody>
                             </table>
                         </div>
@@ -135,6 +129,47 @@
             </div>
         </div>
     </div>
+
+    <!-- Add Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <form method="POST" action="{{ URL::route('test') }}">
+            <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+                <div class="modal-body">
+                    @csrf
+                    <div class="mb-3">
+                    <label class="form-label">Name</label>
+                    <input type="text" class="form-control" name="name" required> 
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Email</label>
+                        <input type="email" class="form-control" name="email" required> 
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Password</label>
+                        <input type="password" class="form-control" name="password" required> 
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div class="left-side">
+                        <button type="button" class="btn btn-default btn-link" data-dismiss="modal">Close</button>
+                    </div>
+                    <div class="divider"></div>
+                    <div class="right-side">
+                        <button type="submit" class="btn btn-primary btn-link">Submit</button>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </form>
+    </div>
+
 @endsection
 
 @push('scripts')
