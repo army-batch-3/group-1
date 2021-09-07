@@ -86,6 +86,7 @@ class PageController extends Controller
 
         return $data;
     }
+    
     public function test(Request $request)
     {
         // add to db 

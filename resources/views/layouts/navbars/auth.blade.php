@@ -78,7 +78,7 @@
                     <p>{{ __('Employees') }}</p>
                 </a>
             </li>
-            <li class="{{ $elementActive == 'reports' ? 'active' : '' }}">
+            {{-- <li class="{{ $elementActive == 'reports' ? 'active' : '' }}">
                 <a href="{{ route('page.index', 'reports') }}">
                     <i class="nc-icon nc-single-copy-04"></i>
                     <p>{{ __('Reports') }}</p>
@@ -89,7 +89,7 @@
                     <i class="nc-icon nc-credit-card"></i>
                     <p>{{ __('Fleet') }}</p>
                 </a>
-            </li>
+            </li> --}}
         </ul>
     </div>
 </div>
