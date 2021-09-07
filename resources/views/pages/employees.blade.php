@@ -6,134 +6,207 @@
 @section('content')
     <div class="content">
         <div class="row">
-            <div class="col-md-8 ml-auto mr-auto">
-                {{-- <div class="card card-upgrade">
-                    <div class="card-header text-center">
-                        <h4 class="card-title">Paper Dashboard PRO</h3>
-                            <p class="card-category">Are you looking for more components? Please check our Premium Version
-                                of Paper Dashboard PRO.</p>
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Employees</h4>
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                            Add Employee
+                        </button>
                     </div>
                     <div class="card-body">
-                        <div class="table-responsive table-upgrade">
-                            <table class="table">
-                                <thead>
-                                    <th></th>
-                                    <th class="text-center">Free</th>
-                                    <th class="text-center">PRO</th>
+                        <div class="">
+                            <table class="table table-striped" id="table">
+                                <thead class=" text-primary">
+                                    <th>
+                                        Photo
+                                    </th>
+                                    <th>
+                                        First Name
+                                    </th>
+                                    <th>
+                                        Last Name
+                                    </th>
+                                    <th>
+                                        Middle Name
+                                    </th>
+                                    <th>
+                                        Employee Type
+                                    </th>
+                                    <th class="text-center">
+                                        Actions
+                                    </th>
                                 </thead>
+                                
                                 <tbody>
-                                    <tr>
-                                        <td>
-                                            <h3 class="text-primary mb-0 mt-3">Laravel</h3>
-                                        </td>
-                                        <td class="text-center"></td>
-                                        <td class="text-center"></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Login, Register, Forgot password pages</td>
-                                        <td class="text-center"><i class="fa fa-check text-success"></i></td>
-                                        <td class="text-center"><i class="fa fa-check text-success"></i></td>
-                                    </tr>
-                                    <tr>
-                                        <td>User profile</td>
-                                        <td class="text-center"><i class="fa fa-check text-success"></i></td>
-                                        <td class="text-center"><i class="fa fa-check text-success"></i></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Users management</td>
-                                        <td class="text-center"><i class="fa fa-times text-danger"></i></td>
-                                        <td class="text-center"><i class="fa fa-check text-success"></i></td>
-                                    </tr>
-                                    <tr>
-                                        <td>User roles management </td>
-                                        <td class="text-center"><i class="fa fa-times text-danger"></i></td>
-                                        <td class="text-center"><i class="fa fa-check text-success"></i></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Items management </td>
-                                        <td class="text-center"><i class="fa fa-times text-danger"></i></td>
-                                        <td class="text-center"><i class="fa fa-check text-success"></i></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Categories management, Tags management </td>
-                                        <td class="text-center"><i class="fa fa-times text-danger"></i></td>
-                                        <td class="text-center"><i class="fa fa-check text-success"></i></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Image upload, date picker inputs</td>
-                                        <td class="text-center"><i class="fa fa-times text-danger"></i></td>
-                                        <td class="text-center"><i class="fa fa-check text-success"></i></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Radio button, checkbox, toggle inputs</td>
-                                        <td class="text-center"><i class="fa fa-times text-danger"></i></td>
-                                        <td class="text-center"><i class="fa fa-check text-success"></i></td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <h3 class="text-primary mb-0 mt-3">Frontend</h3>
-                                        </td>
-                                        <td class="text-center"></td>
-                                        <td class="text-center"></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Components</td>
-                                        <td class="text-center">16</td>
-                                        <td class="text-center">160</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Plugins</td>
-                                        <td class="text-center">4</td>
-                                        <td class="text-center">13</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Example Pages</td>
-                                        <td class="text-center">7</td>
-                                        <td class="text-center">27</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Login, Register, Pricing, Lock Pages</td>
-                                        <td class="text-center"><i class="nc-icon nc-simple-remove text-danger"></i></td>
-                                        <td class="text-center"><i class="nc-icon nc-check-2 text-success"></i></td>
-                                    </tr>
-                                    <tr>
-                                        <td>DataTables, VectorMap, SweetAlert, Wizard, jQueryValidation, FullCalendar etc...
-                                        </td>
-                                        <td class="text-center"><i class="nc-icon nc-simple-remove text-danger"></i></td>
-                                        <td class="text-center"><i class="nc-icon nc-check-2 text-success"></i></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Mini Sidebar</td>
-                                        <td class="text-center"><i class="nc-icon nc-simple-remove text-danger"></i></td>
-                                        <td class="text-center"><i class="nc-icon nc-check-2 text-success"></i></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Premium Support</td>
-                                        <td class="text-center"><i class="nc-icon nc-simple-remove text-danger"></i></td>
-                                        <td class="text-center"><i class="nc-icon nc-check-2 text-success"></i></td>
-                                    </tr>
-                                    <tr>
-                                        <td></td>
-                                        <td class="text-center">Free</td>
-                                        <td class="text-center">Just $149</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-center"></td>
-                                        <td class="text-center">
-                                            <a href="#" class="btn btn-round btn-default disabled">Current Version</a>
-                                        </td>
-                                        <td class="text-center">
-                                            <a target="_blank"
-                                                href="https://www.creative-tim.com/product/paper-dashboard-pro-laravel"
-                                                class="btn btn-round btn-primary">Upgrade to PRO</a>
-                                        </td>
-                                    </tr>
+                                    @isset($data)
+                                        @foreach ($data as $entity)
+                                        <tr>
+                                            <td>
+                                                <img src="{{ URL::asset($entity->logo) }}" alt="" class="img-fluid">
+                                            </td>
+                                            <td>
+                                                {{ $entity->first_name }}
+                                            </td>
+                                            <td>
+                                                {{ $entity->last_name }}
+                                            </td>
+                                            <td>
+                                                {{ $entity->middle_name }}
+                                            </td>
+                                            <td>
+                                                {{ $entity->employee_type }}
+                                            </td>
+                                            <td>
+                                                <div class="row d-flex justify-content-center">
+                                                    <button class="btn btn-warning btn-fab btn-icon btn-sm btn-round" data-toggle="modal" data-target="#editModal">
+                                                        <i class="fa fa-edit"></i>
+                                                    </button>
+                                                    <div class="px-2"></div>
+                                                    <button class="btn btn-danger btn-fab btn-icon btn-sm btn-round" data-toggle="modal" data-target="#deleteModal">
+                                                        <i class="fa fa-trash"></i>
+                                                    </button>
+                                                </div>
+                                                
+                                            </td>
+                                        </tr>
+
+                                        <!-- Edit Modal -->
+                                        <div class="modal fade " id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+                                            <form method="POST" action="{{ URL::route('test') }}" enctype="multipart/form-data">
+                                                <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                    <h5 class="modal-title" id="editModalLabel">Edit Employee</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        @csrf
+                                                        <div class="mb-3">
+                                                            <label class="form-label">Photo</label>
+                                                            <input type="file" class="form-control" name="photo"> 
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label class="form-label">First Name</label>
+                                                            <input type="text" class="form-control" name="first_name" value="{{ $entity->first_name }}" required> 
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label class="form-label">Last Name</label>
+                                                            <input type="text" class="form-control" name="last_name" value="{{ $entity->last_name }}" required> 
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label class="form-label">Middle Name</label>
+                                                            <input type="text" class="form-control" name="middle_name" value="{{ $entity->middle_name }}" required> 
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label class="form-label">Employee Type</label>
+                                                            <input type="text" class="form-control" name="employee_type" value="{{ $entity->employee_type }}"> 
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <div class="left-side">
+                                                            <button type="button" class="btn btn-default btn-link" data-dismiss="modal">Close</button>
+                                                        </div>
+                                                        <div class="divider"></div>
+                                                        <div class="right-side">
+                                                            <button type="submit" class="btn btn-warning btn-link">Submit</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                </div>
+                                            </form>
+                                        </div>
+
+                                        <!-- Delete Modal -->
+                                        <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+                                            <form method="POST" action="{{ URL::route('test') }}">
+                                                <div class="modal-dialog modal-sm" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                    <h5 class="modal-title" id="deleteModalLabel">Delete</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        @csrf
+                                                        <div class="col">
+                                                            <p>Are you sure you want to delete this User?</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <div class="left-side">
+                                                            <button type="button" class="btn btn-default btn-link" data-dismiss="modal">Cancel</button>
+                                                        </div>
+                                                        <div class="divider"></div>
+                                                        <div class="right-side">
+                                                            <button type="submit" class="btn btn-danger btn-link">Delete</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                        
+                                        @endforeach
+                                    @endisset
                                 </tbody>
                             </table>
                         </div>
                     </div>
-                </div> --}}
+                </div>
             </div>
         </div>
     </div>
+
+    <!-- Add Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <form method="POST" action="{{ URL::route('test') }}" enctype="multipart/form-data">
+            <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Employee Details</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+                <div class="modal-body">
+                    @csrf
+                    <div class="mb-3">
+                        <label class="form-label">Photo</label>
+                        <input type="file" class="form-control" name="photo"> 
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">First Name</label>
+                        <input type="text" class="form-control" name="first_name" required> 
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Last Name</label>
+                        <input type="text" class="form-control" name="last_name" required> 
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Middle Name</label>
+                        <input type="text" class="form-control" name="middle_name" required> 
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Employee Type</label>
+                        <input type="text" class="form-control" name="employee_type"> 
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div class="left-side">
+                        <button type="button" class="btn btn-default btn-link" data-dismiss="modal">Close</button>
+                    </div>
+                    <div class="divider"></div>
+                    <div class="right-side">
+                        <button type="submit" class="btn btn-primary btn-link">Submit</button>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </form>
+    </div>
+
 @endsection

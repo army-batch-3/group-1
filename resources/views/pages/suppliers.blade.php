@@ -5,171 +5,222 @@
 
 @section('content')
     <div class="content">
-        {{-- <div class="row">
+        <div class="row">
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <h5 class="card-title">Notifications</h5>
-                        <p class="card-category">Handcrafted by our friend
-                            <a target="_blank" href="https://github.com/mouse0270">Robert McIntosh</a>. Please checkout the
-                            <a href="http://bootstrap-notify.remabledesigns.com/" target="_blank">full documentation.</a>
-                        </p>
+                        <h4 class="card-title">Suppliers</h4>
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                            Add Supplier
+                        </button>
                     </div>
                     <div class="card-body">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="card card-plain">
-                                    <div class="card-header">
-                                        <h5 class="card-title">Notifications Style</h5>
-                                    </div>
-                                    <div class="card-body">
-                                        <div class="alert alert-info">
-                                            <span>This is a plain notification</span>
+                        <div class="">
+                            <table class="table hover compact" id="table">
+                                <thead class="text-sm text-primary">
+                                    <th>
+                                        Logo
+                                    </th>
+                                    <th>
+                                        Name
+                                    </th>
+                                    <th>
+                                        Email
+                                    </th>
+                                    <th>
+                                        Contact No.
+                                    </th>
+                                    <th>
+                                        Contact Person
+                                    </th>
+                                    <th>
+                                        Address
+                                    </th>
+                                    <th class="text-center">
+                                        Actions
+                                    </th>
+                                </thead>
+                                
+                                <tbody>
+                                    @isset($data)
+                                        @foreach ($data as $entity)
+                                        <tr>
+                                            <td>
+                                                <img src="{{ URL::asset($entity->logo) }}" alt="" class="img-fluid">
+                                            </td>
+                                            <td>
+                                                {{ $entity->name }}
+                                            </td>
+                                            <td>
+                                                {{ $entity->email }}
+                                            </td>
+                                            <td>
+                                                {{ $entity->contact_number }}
+                                            </td>
+                                            <td>
+                                                {{ $entity->contact_person }}
+                                            </td>
+                                            <td>
+                                                {{ $entity->address }}
+                                            </td>
+                                            <td>
+                                                <div class="row d-flex justify-content-center">
+                                                    <button class="btn btn-warning btn-fab btn-icon btn-sm btn-round" data-toggle="modal" data-target="#editModal">
+                                                        <i class="fa fa-edit"></i>
+                                                    </button>
+                                                    <div class="px-2"></div>
+                                                    <button class="btn btn-danger btn-fab btn-icon btn-sm btn-round" data-toggle="modal" data-target="#deleteModal">
+                                                        <i class="fa fa-trash"></i>
+                                                    </button>
+                                                </div>
+                                                
+                                            </td>
+                                        </tr>
+
+                                        <!-- Edit Modal -->
+                                        <div class="modal fade " id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+                                            <form method="POST" action="{{ URL::route('test') }}" enctype="multipart/form-data">
+                                                <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                    <h5 class="modal-title" id="editModalLabel">Edit Supplier</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        @csrf
+                                                        <div class="mb-3">
+                                                            <label class="form-label">Logo</label>
+                                                            <input type="file" class="form-control" name="logo"> 
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label class="form-label">Name</label>
+                                                            <input type="text" class="form-control" name="name" {{ $entity->name }} required> 
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label class="form-label">Email</label>
+                                                            <input type="email" class="form-control" name="email" {{ $entity->email }} required> 
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label class="form-label">Contact Number</label>
+                                                            <input type="number" class="form-control" name="contact_number" {{ $entity->contact_number }} required> 
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label class="form-label">Contact Person</label>
+                                                            <input type="text" class="form-control" name="contact_person" {{ $entity->contact_person }} required> 
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label class="form-label">Address</label>
+                                                            <input type="text" class="form-control" name="address" {{ $entity->address }} required> 
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <div class="left-side">
+                                                            <button type="button" class="btn btn-default btn-link" data-dismiss="modal">Close</button>
+                                                        </div>
+                                                        <div class="divider"></div>
+                                                        <div class="right-side">
+                                                            <button type="submit" class="btn btn-warning btn-link">Submit</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                </div>
+                                            </form>
                                         </div>
-                                        <div class="alert alert-info alert-dismissible fade show">
-                                            <button type="button" aria-hidden="true" class="close" data-dismiss="alert"
-                                                aria-label="Close">
-                                                <i class="nc-icon nc-simple-remove"></i>
-                                            </button>
-                                            <span>This is a notification with close button.</span>
+
+                                        <!-- Delete Modal -->
+                                        <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+                                            <form method="POST" action="{{ URL::route('test') }}">
+                                                <div class="modal-dialog modal-sm" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                    <h5 class="modal-title" id="deleteModalLabel">Delete</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        @csrf
+                                                        <div class="col">
+                                                            <p>Are you sure you want to delete this User?</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <div class="left-side">
+                                                            <button type="button" class="btn btn-default btn-link" data-dismiss="modal">Cancel</button>
+                                                        </div>
+                                                        <div class="divider"></div>
+                                                        <div class="right-side">
+                                                            <button type="submit" class="btn btn-danger btn-link">Delete</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                </div>
+                                            </form>
                                         </div>
-                                        <div class="alert alert-info alert-with-icon alert-dismissible fade show"
-                                            data-notify="container">
-                                            <button type="button" aria-hidden="true" class="close" data-dismiss="alert"
-                                                aria-label="Close">
-                                                <i class="nc-icon nc-simple-remove"></i>
-                                            </button>
-                                            <span data-notify="icon" class="nc-icon nc-bell-55"></span>
-                                            <span data-notify="message">This is a notification with close button and
-                                                icon.</span>
-                                        </div>
-                                        <div class="alert alert-info alert-with-icon alert-dismissible fade show"
-                                            data-notify="container">
-                                            <button type="button" aria-hidden="true" class="close" data-dismiss="alert"
-                                                aria-label="Close">
-                                                <i class="nc-icon nc-simple-remove"></i>
-                                            </button>
-                                            <span data-notify="icon" class="nc-icon nc-chart-pie-36"></span>
-                                            <span data-notify="message">This is a notification with close button and icon
-                                                and have many lines. You can see that the icon and the close button are
-                                                always vertically aligned. This is a beautiful notification. So you don't
-                                                have to worry about the style.</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="card card-plain">
-                                    <div class="card-header">
-                                        <h5 class="card-title">Notification states</h5>
-                                    </div>
-                                    <div class="card-body">
-                                        <div class="alert alert-primary alert-dismissible fade show">
-                                            <button type="button" aria-hidden="true" class="close" data-dismiss="alert"
-                                                aria-label="Close">
-                                                <i class="nc-icon nc-simple-remove"></i>
-                                            </button>
-                                            <span>
-                                                <b> Primary - </b> This is a regular notification made with
-                                                ".alert-primary"</span>
-                                        </div>
-                                        <div class="alert alert-info alert-dismissible fade show">
-                                            <button type="button" aria-hidden="true" class="close" data-dismiss="alert"
-                                                aria-label="Close">
-                                                <i class="nc-icon nc-simple-remove"></i>
-                                            </button>
-                                            <span>
-                                                <b> Info - </b> This is a regular notification made with
-                                                ".alert-info"</span>
-                                        </div>
-                                        <div class="alert alert-success alert-dismissible fade show">
-                                            <button type="button" aria-hidden="true" class="close" data-dismiss="alert"
-                                                aria-label="Close">
-                                                <i class="nc-icon nc-simple-remove"></i>
-                                            </button>
-                                            <span>
-                                                <b> Success - </b> This is a regular notification made with
-                                                ".alert-success"</span>
-                                        </div>
-                                        <div class="alert alert-warning alert-dismissible fade show">
-                                            <button type="button" aria-hidden="true" class="close" data-dismiss="alert"
-                                                aria-label="Close">
-                                                <i class="nc-icon nc-simple-remove"></i>
-                                            </button>
-                                            <span>
-                                                <b> Warning - </b> This is a regular notification made with
-                                                ".alert-warning"</span>
-                                        </div>
-                                        <div class="alert alert-danger alert-dismissible fade show">
-                                            <button type="button" aria-hidden="true" class="close" data-dismiss="alert"
-                                                aria-label="Close">
-                                                <i class="nc-icon nc-simple-remove"></i>
-                                            </button>
-                                            <span>
-                                                <b> Danger - </b> This is a regular notification made with
-                                                ".alert-danger"</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                                        
+                                        @endforeach
+                                    @endisset
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="places-buttons">
-                            <div class="row">
-                                <div class="col-md-6 ml-auto mr-auto text-center">
-                                    <h4 class="card-title">
-                                        Notifications Places
-                                        <p class="category">Click to view notifications</p>
-                                    </h4>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-8 ml-auto mr-auto">
-                                    <div class="row">
-                                        <div class="col-md-4">
-                                            <button class="btn btn-primary btn-block"
-                                                onclick="demo.showNotification('top','left')">Top Left</button>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <button class="btn btn-primary btn-block"
-                                                onclick="demo.showNotification('top','center')">Top Center</button>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <button class="btn btn-primary btn-block"
-                                                onclick="demo.showNotification('top','right')">Top Right</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-8 ml-auto mr-auto">
-                                    <div class="row">
-                                        <div class="col-md-4">
-                                            <button class="btn btn-primary btn-block"
-                                                onclick="demo.showNotification('bottom','left')">Bottom Left</button>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <button class="btn btn-primary btn-block"
-                                                onclick="demo.showNotification('bottom','center')">Bottom Center</button>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <button class="btn btn-primary btn-block"
-                                                onclick="demo.showNotification('bottom','right')">Bottom Right</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+    </div>
+
+    <!-- Add Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <form method="POST" action="{{ URL::route('test') }}" enctype="multipart/form-data">
+            <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Supplier Details</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+                <div class="modal-body">
+                    @csrf
+                    <div class="mb-3">
+                        <label class="form-label">Logo</label>
+                        <input type="file" class="form-control" name="logo"> 
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Name</label>
+                        <input type="text" class="form-control" name="name" required> 
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Email</label>
+                        <input type="email" class="form-control" name="email" required> 
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Contact Number</label>
+                        <input type="number" class="form-control" name="contact_number" required> 
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Contact Person</label>
+                        <input type="text" class="form-control" name="contact_person" required> 
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Address</label>
+                        <input type="text" class="form-control" name="address" required> 
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div class="left-side">
+                        <button type="button" class="btn btn-default btn-link" data-dismiss="modal">Close</button>
+                    </div>
+                    <div class="divider"></div>
+                    <div class="right-side">
+                        <button type="submit" class="btn btn-primary btn-link">Submit</button>
                     </div>
                 </div>
             </div>
-        </div> --}}
+            </div>
+        </form>
     </div>
+
 @endsection
