@@ -46,10 +46,10 @@
                                 
                                 <tbody>
                                     @isset($data)
-                                        @foreach ($data as $entity)
-                                        <tr>
+                                        @foreach ($data->assets as $entity)
+                                        <tr class="text-center">
                                             <td>
-                                                {{ $entity->photo }}
+                                                <img src="{{ URL::asset($entity->photo) }}" alt="" class="img-fluid">
                                             </td>
                                             <td>
                                                 {{ $entity->name }}
@@ -61,10 +61,10 @@
                                                 {{ $entity->type }}
                                             </td>
                                             <td>
-                                                {{ $entity->supplier_id }}
+                                                {{ $entity->supplier }}
                                             </td>
                                             <td>
-                                                {{ $entity->warehouse_id }}
+                                                {{ $entity->warehouse }}
                                             </td>
                                             <td>
                                                 {{ $entity->price }}
@@ -110,25 +110,31 @@
                                                         </div>
                                                         <div class="mb-3">
                                                             <label class="form-label">Type</label>
-                                                            <input type="number" class="form-control" name="type" value="{{ $entity->type }}"> 
+                                                            <input type="text" class="form-control" name="type" value="{{ $entity->type }}"> 
                                                         </div>
                                                         <div class="mb-3">
                                                             <label class="form-label">Supplier</label>
                                                             <select class="form-control" name="supplier_id">
-                                                                <option value="id_1">item 1</option>
-                                                                <option value="id_2">item 2</option>
+                                                                @isset($data)
+                                                                    @foreach ($data->suppliers as $element)
+                                                                        <option value="{{ $element->id }}" @if($element->id == $entity->supplier_id) selected="selected" @endif  >{{ $element->name }}</option>
+                                                                    @endforeach
+                                                                @endisset
                                                             </select>
                                                         </div>
                                                         <div class="mb-3">
                                                             <label class="form-label">Warehouse</label>
                                                             <select class="form-control" name="warehouse_id">
-                                                                <option value="id_1">item 1</option>
-                                                                <option value="id_2">item 2</option>
+                                                                @isset($data)
+                                                                    @foreach ($data->warehouses as $element)
+                                                                        <option value="{{ $element->id }}" @if($element->id == $entity->warehouse_id) selected="selected" @endif  >{{ $element->name }}</option>
+                                                                    @endforeach
+                                                                @endisset
                                                             </select>
                                                         </div>
                                                         <div class="mb-3">
                                                             <label class="form-label">Price</label>
-                                                            <input type="number" class="form-control" name="price" value="{{ $entity->name }}" required> 
+                                                            <input type="number" class="form-control" name="price" value="{{ $entity->price }}" required> 
                                                         </div>
                                                     </div>
                                                     <div class="modal-footer">
@@ -219,15 +225,21 @@
                     <div class="mb-3">
                         <label class="form-label">Supplier</label>
                         <select class="form-control" name="supplier_id">
-                            <option value="id_1">item 1</option>
-                            <option value="id_2">item 2</option>
+                            @isset($data)
+                                @foreach ($data->suppliers as $entity)
+                                    <option value="{{ $entity->id }}">{{ $entity->name }}</option>
+                                @endforeach
+                            @endisset
                         </select>
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Warehouse</label>
                         <select class="form-control" name="warehouse_id">
-                            <option value="id_1">item 1</option>
-                            <option value="id_2">item 2</option>
+                            @isset($data)
+                                @foreach ($data->warehouses as $entity)
+                                    <option value="{{ $entity->id }}">{{ $entity->name }}</option>
+                                @endforeach
+                            @endisset
                         </select>
                     </div>
                     <div class="mb-3">

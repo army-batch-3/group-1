@@ -47,7 +47,7 @@
                                 <tbody>
                                     @isset($data)
                                         @foreach ($data as $entity)
-                                        <tr>
+                                        <tr class="text-center">
                                             <td>
                                                 {{ $entity->name }}
                                             </td>

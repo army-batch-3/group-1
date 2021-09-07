@@ -16,7 +16,7 @@
                     </div>
                     <div class="card-body">
                         <div class="">
-                            <table class="table hover compact" id="table">
+                            <table class="table hover compact table-responsive" id="table">
                                 <thead class="text-sm text-primary">
                                     <th>
                                         Logo
@@ -44,7 +44,7 @@
                                 <tbody>
                                     @isset($data)
                                         @foreach ($data as $entity)
-                                        <tr>
+                                        <tr class="text-center">
                                             <td>
                                                 <img src="{{ URL::asset($entity->logo) }}" alt="" class="img-fluid">
                                             </td>
@@ -96,23 +96,23 @@
                                                         </div>
                                                         <div class="mb-3">
                                                             <label class="form-label">Name</label>
-                                                            <input type="text" class="form-control" name="name" {{ $entity->name }} required> 
+                                                            <input type="text" class="form-control" name="name" value="{{ $entity->name }}" required> 
                                                         </div>
                                                         <div class="mb-3">
                                                             <label class="form-label">Email</label>
-                                                            <input type="email" class="form-control" name="email" {{ $entity->email }} required> 
+                                                            <input type="email" class="form-control" name="email" value="{{ $entity->email }}" required> 
                                                         </div>
                                                         <div class="mb-3">
                                                             <label class="form-label">Contact Number</label>
-                                                            <input type="number" class="form-control" name="contact_number" {{ $entity->contact_number }} required> 
+                                                            <input type="number" class="form-control" name="contact_number" value="{{ $entity->contact_number }}" required> 
                                                         </div>
                                                         <div class="mb-3">
                                                             <label class="form-label">Contact Person</label>
-                                                            <input type="text" class="form-control" name="contact_person" {{ $entity->contact_person }} required> 
+                                                            <input type="text" class="form-control" name="contact_person" value="{{ $entity->contact_person }}" required> 
                                                         </div>
                                                         <div class="mb-3">
                                                             <label class="form-label">Address</label>
-                                                            <input type="text" class="form-control" name="address" {{ $entity->address }} required> 
+                                                            <input type="text" class="form-control" name="address" value="{{ $entity->address }}" required> 
                                                         </div>
                                                     </div>
                                                     <div class="modal-footer">
