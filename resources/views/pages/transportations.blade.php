@@ -61,7 +61,7 @@
 
                                         <!-- Edit Modal -->
                                         <div class="modal fade " id="editModal{{$entity->id}}" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
-                                            <form method="POST" action="{{ URL::route('test') }}">
+                                            <form method="post" action="{{ URL::route('transpo.update', $entity->id) }}">
                                                 <div class="modal-dialog" role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
@@ -71,7 +71,7 @@
                                                     </button>
                                                     </div>
                                                     <div class="modal-body">
-                                                        @csrf
+                                                        @csrf @method('PUT')
                                                         <div class="mb-3">
                                                         <label class="form-label">Type</label>
                                                         <input type="text" class="form-control" name="type" value="{{ $entity->type }}" required> 
@@ -107,7 +107,7 @@
 
                                         <!-- Delete Modal -->
                                         <div class="modal fade" id="deleteModal{{$entity->id}}" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
-                                            <form method="POST" action="{{ URL::route('test') }}">
+                                            <form method="POST" action="{{ URL::route('transpo.delete', $entity->id) }}">
                                                 <div class="modal-dialog modal-sm" role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
@@ -117,7 +117,7 @@
                                                     </button>
                                                     </div>
                                                     <div class="modal-body">
-                                                        @csrf
+                                                        @csrf @method('DELETE')
                                                         <div class="col">
                                                             <p>Are you sure you want to delete this User?</p>
                                                         </div>
