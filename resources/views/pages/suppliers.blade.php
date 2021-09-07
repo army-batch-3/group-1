@@ -65,11 +65,11 @@
                                             </td>
                                             <td>
                                                 <div class="row d-flex justify-content-center">
-                                                    <button class="btn btn-warning btn-fab btn-icon btn-sm btn-round" data-toggle="modal" data-target="#editModal">
+                                                    <button class="btn btn-warning btn-fab btn-icon btn-sm btn-round" data-toggle="modal" data-target="#editModal{{$entity->id}}">
                                                         <i class="fa fa-edit"></i>
                                                     </button>
                                                     <div class="px-2"></div>
-                                                    <button class="btn btn-danger btn-fab btn-icon btn-sm btn-round" data-toggle="modal" data-target="#deleteModal">
+                                                    <button class="btn btn-danger btn-fab btn-icon btn-sm btn-round" data-toggle="modal" data-target="#deleteModal{{$entity->id}}">
                                                         <i class="fa fa-trash"></i>
                                                     </button>
                                                 </div>
@@ -78,7 +78,7 @@
                                         </tr>
 
                                         <!-- Edit Modal -->
-                                        <div class="modal fade " id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+                                        <div class="modal fade " id="editModal{{$entity->id}}" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
                                             <form method="POST" action="{{ URL::route('test') }}" enctype="multipart/form-data">
                                                 <div class="modal-dialog" role="document">
                                                 <div class="modal-content">
@@ -130,7 +130,7 @@
                                         </div>
 
                                         <!-- Delete Modal -->
-                                        <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+                                        <div class="modal fade" id="deleteModal{{$entity->id}}" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
                                             <form method="POST" action="{{ URL::route('test') }}">
                                                 <div class="modal-dialog modal-sm" role="document">
                                                 <div class="modal-content">

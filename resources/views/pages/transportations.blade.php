@@ -34,7 +34,7 @@
                                 
                                 <tbody>
                                     @isset($data)
-                                        @foreach ($data as $entity)
+                                        @foreach ($data->transportations as $entity)
                                         <tr>
                                             <td>
                                                 {{ $entity->type }}
@@ -47,11 +47,11 @@
                                             </td>
                                             <td>
                                                 <div class="row d-flex justify-content-center">
-                                                    <button class="btn btn-warning btn-fab btn-icon btn-sm btn-round" data-toggle="modal" data-target="#editModal">
+                                                    <button class="btn btn-warning btn-fab btn-icon btn-sm btn-round" data-toggle="modal" data-target="#editModal{{$entity->id}}" >
                                                         <i class="fa fa-edit"></i>
                                                     </button>
                                                     <div class="px-2"></div>
-                                                    <button class="btn btn-danger btn-fab btn-icon btn-sm btn-round" data-toggle="modal" data-target="#deleteModal">
+                                                    <button class="btn btn-danger btn-fab btn-icon btn-sm btn-round" data-toggle="modal" data-target="#deleteModal{{$entity->id}}">
                                                         <i class="fa fa-trash"></i>
                                                     </button>
                                                 </div>
@@ -60,7 +60,7 @@
                                         </tr>
 
                                         <!-- Edit Modal -->
-                                        <div class="modal fade " id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+                                        <div class="modal fade " id="editModal{{$entity->id}}" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
                                             <form method="POST" action="{{ URL::route('test') }}">
                                                 <div class="modal-dialog" role="document">
                                                 <div class="modal-content">
@@ -78,9 +78,12 @@
                                                         </div>
                                                         <div class="mb-3">
                                                             <label class="form-label">Vehicle</label>
-                                                            <select class="form-control" name="vehicle_id" >
-                                                                <option value="id_1">item 1</option>
-                                                                <option value="id_2" selected>item 2</option>
+                                                            <select class="form-control" name="vehicle_id">
+                                                                @isset($data)
+                                                                    @foreach ($data->vehicles as $element)
+                                                                        <option value="{{ $element->id }}" @if($element->id == $entity->vehicle_id) selected="selected" @endif  >{{ $element->brand }}</option>
+                                                                    @endforeach
+                                                                @endisset
                                                             </select>
                                                         </div>
                                                         <div class="mb-3">
@@ -103,7 +106,7 @@
                                         </div>
 
                                         <!-- Delete Modal -->
-                                        <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+                                        <div class="modal fade" id="deleteModal{{$entity->id}}" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
                                             <form method="POST" action="{{ URL::route('test') }}">
                                                 <div class="modal-dialog modal-sm" role="document">
                                                 <div class="modal-content">
@@ -146,7 +149,7 @@
 
     <!-- Add Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <form method="POST" action="{{ URL::route('test') }}">
+        <form method="POST" action="{{ URL::route('transpo') }}">
             <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -164,8 +167,11 @@
                     <div class="mb-3">
                         <label class="form-label">Vehicle</label>
                         <select class="form-control" name="vehicle_id">
-                            <option value="id_1">item 1</option>
-                            <option value="id_2">item 2</option>
+                            @isset($data)
+                                @foreach ($data->vehicles as $entity)
+                                    <option value="{{ $entity->id }}">{{ $entity->brand }}</option>
+                                @endforeach
+                            @endisset
                         </select>
                     </div>
                     <div class="mb-3">
