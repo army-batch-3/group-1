@@ -16,7 +16,7 @@
                     </div>
                     <div class="card-body">
                         <div class="">
-                            <table class="table">
+                            <table class="table table-striped" id="table">
                                 <thead class=" text-primary">
                                     <th>
                                         Name
@@ -30,96 +30,98 @@
                                 </thead>
                                 
                                 <tbody>
-                                    @foreach ($data as $entity)
-                                    <tr>
-                                        <td>
-                                            {{ $entity->name }}
-                                        </td>
-                                        <td>
-                                            {{ $entity->email }}
-                                        </td>
-                                        <td>
-                                            <div class="row d-flex justify-content-center">
-                                                <button class="btn btn-warning btn-fab btn-icon btn-sm btn-round" data-toggle="modal" data-target="#editModal">
-                                                    <i class="fa fa-edit"></i>
-                                                </button>
-                                                <div class="px-2"></div>
-                                                <button class="btn btn-danger btn-fab btn-icon btn-sm btn-round" data-toggle="modal" data-target="#deleteModal">
-                                                    <i class="fa fa-trash"></i>
-                                                </button>
-                                            </div>
-                                            
-                                        </td>
-                                    </tr>
+                                    @isset($data)
+                                        @foreach ($data as $entity)
+                                        <tr>
+                                            <td>
+                                                {{ $entity->name }}
+                                            </td>
+                                            <td>
+                                                {{ $entity->email }}
+                                            </td>
+                                            <td>
+                                                <div class="row d-flex justify-content-center">
+                                                    <button class="btn btn-warning btn-fab btn-icon btn-sm btn-round" data-toggle="modal" data-target="#editModal">
+                                                        <i class="fa fa-edit"></i>
+                                                    </button>
+                                                    <div class="px-2"></div>
+                                                    <button class="btn btn-danger btn-fab btn-icon btn-sm btn-round" data-toggle="modal" data-target="#deleteModal">
+                                                        <i class="fa fa-trash"></i>
+                                                    </button>
+                                                </div>
+                                                
+                                            </td>
+                                        </tr>
 
-                                    <!-- Edit Modal -->
-                                    <div class="modal fade " id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
-                                        <form method="POST" action="{{ URL::route('test') }}">
-                                            <div class="modal-dialog" role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                <h5 class="modal-title" id="editModalLabel">Modal title</h5>
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
+                                        <!-- Edit Modal -->
+                                        <div class="modal fade " id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+                                            <form method="POST" action="{{ URL::route('test') }}">
+                                                <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                    <h5 class="modal-title" id="editModalLabel">Edit User</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        @csrf
+                                                        <div class="mb-3">
+                                                        <label class="form-label">Name</label>
+                                                        <input type="text" class="form-control" name="name" value="{{ $entity->name }}" required> 
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label class="form-label">Email</label>
+                                                            <input type="email" class="form-control" name="email" value="{{ $entity->email }}" required> 
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <div class="left-side">
+                                                            <button type="button" class="btn btn-default btn-link" data-dismiss="modal">Close</button>
+                                                        </div>
+                                                        <div class="divider"></div>
+                                                        <div class="right-side">
+                                                            <button type="submit" class="btn btn-warning btn-link">Submit</button>
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                                <div class="modal-body">
-                                                    @csrf
-                                                    <div class="mb-3">
-                                                    <label class="form-label">Name</label>
-                                                    <input type="text" class="form-control" name="name" value="{{ $entity->name }}" required> 
-                                                    </div>
-                                                    <div class="mb-3">
-                                                        <label class="form-label">Email</label>
-                                                        <input type="email" class="form-control" name="email" value="{{ $entity->email }}" required> 
-                                                    </div>
                                                 </div>
-                                                <div class="modal-footer">
-                                                    <div class="left-side">
-                                                        <button type="button" class="btn btn-default btn-link" data-dismiss="modal">Close</button>
-                                                    </div>
-                                                    <div class="divider"></div>
-                                                    <div class="right-side">
-                                                        <button type="submit" class="btn btn-warning btn-link">Submit</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            </div>
-                                        </form>
-                                    </div>
+                                            </form>
+                                        </div>
 
-                                    <!-- Delete Modal -->
-                                    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
-                                        <form method="POST" action="{{ URL::route('test') }}">
-                                            <div class="modal-dialog modal-sm" role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                <h5 class="modal-title" id="deleteModalLabel">Modal title</h5>
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    @csrf
-                                                    <div class="col">
-                                                        <p>Are you sure you want to delete this User?</p>
+                                        <!-- Delete Modal -->
+                                        <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+                                            <form method="POST" action="{{ URL::route('test') }}">
+                                                <div class="modal-dialog modal-sm" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                    <h5 class="modal-title" id="deleteModalLabel">Delete</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        @csrf
+                                                        <div class="col">
+                                                            <p>Are you sure you want to delete this User?</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <div class="left-side">
+                                                            <button type="button" class="btn btn-default btn-link" data-dismiss="modal">Cancel</button>
+                                                        </div>
+                                                        <div class="divider"></div>
+                                                        <div class="right-side">
+                                                            <button type="submit" class="btn btn-danger btn-link">Delete</button>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                                <div class="modal-footer">
-                                                    <div class="left-side">
-                                                        <button type="button" class="btn btn-default btn-link" data-dismiss="modal">Cancel</button>
-                                                    </div>
-                                                    <div class="divider"></div>
-                                                    <div class="right-side">
-                                                        <button type="submit" class="btn btn-danger btn-link">Delete</button>
-                                                    </div>
                                                 </div>
-                                            </div>
-                                            </div>
-                                        </form>
-                                    </div>
-                                    
-                                    @endforeach
+                                            </form>
+                                        </div>
+                                        
+                                        @endforeach
+                                    @endisset
                                     
                                 </tbody>
                             </table>
@@ -136,7 +138,7 @@
             <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <h5 class="modal-title" id="exampleModalLabel">User Details</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
