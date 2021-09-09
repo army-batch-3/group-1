@@ -18,10 +18,8 @@ class TranportationController extends Controller
         $this->request = $request;
     }
 
-    public function test()
+    public function create()
     {
-        // add to db 
-        
         Transportation::create([
             'type' => $this->request->type,
             'vehicle_id' => $this->request->vehicle_id,

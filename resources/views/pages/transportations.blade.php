@@ -149,7 +149,7 @@
 
     <!-- Add Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <form method="POST" action="{{ URL::route('transpo') }}">
+        <form method="POST" action="{{ URL::route('transpo.create') }}">
             <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">

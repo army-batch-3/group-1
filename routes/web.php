@@ -31,7 +31,7 @@ Route::group(['middleware' => 'auth'], function () {
 
 Route::group(['middleware' => 'auth'], function () {
 	Route::get('{page}', ['as' => 'page.index', 'uses' => 'App\Http\Controllers\PageController@index']);
-	Route::post('/transpo', [TranportationController::class, 'test'])->name('transpo');
+	Route::post('/transpo', [TranportationController::class, 'create'])->name('transpo.create');
 	Route::put('/transpo/update/{id}', [TranportationController::class, 'update'])->name('transpo.update');
 	Route::delete('/transpo/delete/{id}', [TranportationController::class, 'delete'])->name('transpo.delete');
 });
