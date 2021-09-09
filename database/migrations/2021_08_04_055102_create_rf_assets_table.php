@@ -16,7 +16,7 @@ class CreateRfAssetsTable extends Migration
         Schema::create('rf_assets', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('photo')->nullable();
+            $table->longText('photo')->nullable();
             $table->integer('number_of_stocks');
             $table->string('type');
             $table->foreignId('supplier_id')
