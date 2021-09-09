@@ -35,6 +35,7 @@ class SupplierController extends Controller
     {
         Supplier::find($id)->update([
             'name' => $this->request->name,
+            // 'logo' => $this->request->logo,
             'email' => $this->request->email,
             'contact_number' =>  $this->request->contact_number,
             'contact_person' =>  $this->request->contact_person,
