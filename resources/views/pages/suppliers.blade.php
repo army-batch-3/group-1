@@ -79,7 +79,7 @@
 
                                         <!-- Edit Modal -->
                                         <div class="modal fade " id="editModal{{$entity->id}}" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
-                                            <form method="post" action="{{ URL::route('supplier.update', $entity->id) }}" enctype="multipart/form-data">
+                                            <form method="POST" action="{{ URL::route('supplier.update', $entity->id) }}" enctype="multipart/form-data">
                                                 <div class="modal-dialog" role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-header">

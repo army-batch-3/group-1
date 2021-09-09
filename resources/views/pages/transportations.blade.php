@@ -61,7 +61,7 @@
 
                                         <!-- Edit Modal -->
                                         <div class="modal fade " id="editModal{{$entity->id}}" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
-                                            <form method="post" action="{{ URL::route('transpo.update', $entity->id) }}">
+                                            <form method="POST" action="{{ URL::route('transpo.update', $entity->id) }}">
                                                 <div class="modal-dialog" role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
