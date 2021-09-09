@@ -16,8 +16,8 @@
                     </div>
                     <div class="card-body">
                         <div class="">
-                            <table class="table table-striped" id="table">
-                                <thead class=" text-primary">
+                            <table class="table hover compact" id="table">
+                                <thead class="text-sm text-primary">
                                     <th>
                                         Photo
                                     </th>

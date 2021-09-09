@@ -20,9 +20,11 @@ class SupplierController extends Controller
 
     public function create()
     {
+        // saveImage($path) is called from extended Controller class
+
         Supplier::create([
             'name' => $this->request->name,
-            // 'logo' => $this->request->logo,
+            'logo' => $this->request->logo != null ? $this->saveImage('supplier', $this->request->logo) : '',
             'email' => $this->request->email,
             'contact_number' =>  $this->request->contact_number,
             'contact_person' =>  $this->request->contact_person,
@@ -33,9 +35,13 @@ class SupplierController extends Controller
 
     public function update($id)
     {
-        Supplier::find($id)->update([
+        // saveImage($path) is called from extended Controller class
+
+        $supplier = Supplier::find($id);
+        
+        $supplier->update([
             'name' => $this->request->name,
-            // 'logo' => $this->request->logo,
+            'logo' => $this->request->logo != null ? $this->saveImage('supplier', $this->request->logo) : $supplier->logo,
             'email' => $this->request->email,
             'contact_number' =>  $this->request->contact_number,
             'contact_person' =>  $this->request->contact_person,
