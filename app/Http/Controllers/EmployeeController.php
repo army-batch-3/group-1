@@ -26,7 +26,7 @@ class EmployeeController extends Controller
             'first_name' => $this->request->first_name,
             'last_name' =>  $this->request->last_name,
             'middle_name' =>  $this->request->middle_name,
-            'photo' => $this->request->photo != null ? $this->saveImage('employee') : '',
+            'photo' => $this->request->photo != null ? $this->saveImage('employee', $this->request->photo) : '',
             'employee_type' => $this->request->employee_type,
         ]);
         return redirect()->route('page.index', 'employees');
@@ -36,11 +36,13 @@ class EmployeeController extends Controller
     {
         $employee = Employee::find($id);
 
+        // saveImage($path) is called from extended Controller class
+
         $employee->update([
             'first_name' => $this->request->first_name,
             'last_name' =>  $this->request->last_name,
             'middle_name' =>  $this->request->middle_name,
-            'photo' => $this->request->photo != null ? $this->saveImage('employee') : $employee->photo,
+            'photo' => $this->request->photo != null ? $this->saveImage('employee', $this->request->photo) : $employee->photo,
             'employee_type' =>  $this->request->employee_type,
         ]);
 

@@ -13,18 +13,18 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
-    public function saveImage($path)
+    public function saveImage($path, $photo)
     {
         $img_name = strtotime(date('Y-m-d'))
             .'_'.rand(11111,99999)
-            .'.'.$this->request->photo->extension();
+            .'.'.$photo->extension();
 
         /**
          * putFileAs(path, image object, image name);
          */
         Storage::disk('public')->putFileAs(
-            'employee',
-            $this->request->photo,
+            $path,
+            $photo,
             $img_name
         );
 
