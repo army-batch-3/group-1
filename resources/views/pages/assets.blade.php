@@ -49,7 +49,7 @@
                                         @foreach ($data->assets as $entity)
                                         <tr class="text-center">
                                             <td>
-                                                <img src="{{ URL::asset($entity->photo) }}" alt="" class="img-fluid">
+                                                <img src="{{ URL::asset('storage/'.$entity->photo) }}" alt="" class="img-fluid">
                                             </td>
                                             <td>
                                                 {{ $entity->name }}

@@ -21,9 +21,11 @@ class AssetController extends Controller
 
     public function create()
     {
+        // saveImage($path) is called from extended Controller class
+        
         Asset::create([
             'name' => $this->request->name,
-            // 'photo' => $this->request->photo,
+            'photo' => $this->request->photo != null ? $this->saveImage('asset', $this->request->photo) : '',
             'number_of_stocks' =>  $this->request->number_of_stocks,
             'type' =>  $this->request->type,
             'supplier_id' =>  $this->request->supplier_id,
@@ -35,9 +37,13 @@ class AssetController extends Controller
 
     public function update($id)
     {
-        Asset::find($id)->update([
+        $asset = Asset::find($id);
+        
+        // saveImage($path) is called from extended Controller clas
+        
+        $asset->update([
             'name' => $this->request->name,
-            // 'photo' => $this->request->photo,
+            'photo' => $this->request->photo != null ? $this->saveImage('asset', $this->request->photo) : $asset->photo,
             'number_of_stocks' =>  $this->request->number_of_stocks,
             'type' =>  $this->request->type,
             'supplier_id' =>  $this->request->supplier_id,
