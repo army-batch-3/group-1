@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TranportationController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\WarehouseController;
+use App\Http\Controllers\AssetController;
 
 /*
 |--------------------------------------------------------------------------
@@ -48,6 +49,11 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::post('/warehouse', [WarehouseController::class, 'create'])->name('warehouse.create');
 	Route::put('/warehouse/update/{id}', [WarehouseController::class, 'update'])->name('warehouse.update');
 	Route::delete('/warehouse/delete/{id}', [WarehouseController::class, 'delete'])->name('warehouse.delete');
+
+	//Asset
+	Route::post('/asset', [AssetController::class, 'create'])->name('asset.create');
+	Route::put('/asset/update/{id}', [AssetController::class, 'update'])->name('asset.update');
+	Route::delete('/asset/delete/{id}', [AssetController::class, 'delete'])->name('asset.delete');
 });
 
 Route::post('/test', 'App\Http\Controllers\PageController@test')->name('test');

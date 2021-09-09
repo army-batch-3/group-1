@@ -85,7 +85,7 @@
 
                                         <!-- Edit Modal -->
                                         <div class="modal fade " id="editModal{{$entity->id}}" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
-                                            <form method="POST" action="{{ URL::route('test') }}" enctype="multipart/form-data">
+                                            <form method="POST" action="{{ URL::route('asset.update', $entity->id) }}" enctype="multipart/form-data">
                                                 <div class="modal-dialog" role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
@@ -95,7 +95,7 @@
                                                     </button>
                                                     </div>
                                                     <div class="modal-body">
-                                                        @csrf
+                                                        @csrf @method('PUT')
                                                         <div class="mb-3">
                                                             <label class="form-label">Photo</label>
                                                             <input type="file" class="form-control" name="photo"> 
@@ -153,7 +153,7 @@
 
                                         <!-- Delete Modal -->
                                         <div class="modal fade" id="deleteModal{{$entity->id}}" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
-                                            <form method="POST" action="{{ URL::route('test') }}">
+                                            <form method="POST" action="{{ URL::route('asset.delete', $entity->id) }}">
                                                 <div class="modal-dialog modal-sm" role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
@@ -163,7 +163,7 @@
                                                     </button>
                                                     </div>
                                                     <div class="modal-body">
-                                                        @csrf
+                                                        @csrf @method('DELETE')
                                                         <div class="col">
                                                             <p>Are you sure you want to delete this User?</p>
                                                         </div>
@@ -195,7 +195,7 @@
 
     <!-- Add Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <form method="POST" action="{{ URL::route('test') }}" enctype="multipart/form-data">
+        <form method="POST" action="{{ URL::route('asset.create') }}" enctype="multipart/form-data">
             <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -220,7 +220,7 @@
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Type</label>
-                        <input type="number" class="form-control" name="type" > 
+                        <input type="text" class="form-control" name="type" > 
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Supplier</label>
