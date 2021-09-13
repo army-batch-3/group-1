@@ -16,7 +16,7 @@
                     </div>
                     <div class="card-body">
                         <div class="">
-                            <table class="table hover compact table-responsive" id="table">
+                            <table class="table hover" id="table">
                                 <thead class="text-sm text-primary">
                                     <th>
                                         Logo
@@ -46,7 +46,7 @@
                                         @foreach ($data as $entity)
                                         <tr class="text-center">
                                             <td>
-                                                <img src="{{ URL::asset('storage/'.$entity->logo) }}" alt="" class="img-fluid">
+                                                <img src="{{ URL::asset('storage/'.$entity->logo) }}" width="150" alt="" class="">
                                             </td>
                                             <td>
                                                 {{ $entity->name }}

@@ -16,7 +16,7 @@
                     </div>
                     <div class="card-body">
                         <div class="">
-                            <table class="table hover compact table-responsive" id="table">
+                            <table class="table hover compact" id="table">
                                 <thead class="text-sm text-primary">
                                     <th>
                                         Name

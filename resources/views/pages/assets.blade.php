@@ -16,7 +16,7 @@
                     </div>
                     <div class="card-body">
                         <div class="">
-                            <table class="table hover compact table-responsive" id="table">
+                            <table class="table hover compact" id="table">
                                 <thead class="text-sm text-primary">
                                     <th>
                                         Photo
@@ -49,7 +49,7 @@
                                         @foreach ($data->assets as $entity)
                                         <tr class="text-center">
                                             <td>
-                                                <img src="{{ URL::asset('storage/'.$entity->photo) }}" alt="" class="img-fluid">
+                                                <img src="{{ URL::asset('storage/'.$entity->photo) }}" width="150" alt="" class="">
                                             </td>
                                             <td>
                                                 {{ $entity->name }}
