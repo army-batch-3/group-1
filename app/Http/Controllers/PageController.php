@@ -101,7 +101,7 @@ class PageController extends Controller
                 ->select('t.type', 't.plate_number', 'v.brand as vehicle', 't.id', 'v.id as vehicle_id')
                 ->get();
 
-            $restock = DB::table('tr_requisition_items as i')
+            $requisition = DB::table('tr_requisition_items as i')
                 ->join('tr_requisition_requests as q', 'q.id', '=', 'i.requisition_id')
                 ->join('rf_assets as a', 'a.id', '=', 'i.asset_id')
                 ->join('rf_employees as t', 't.id', '=', 'q.requestor_id')
@@ -114,7 +114,7 @@ class PageController extends Controller
                     "warehouses" => $warehouses,
                     "assets" => $assets,
                     "transportations" => $transportations,
-                    "restock" => $restock
+                    "requisition" => $requisition
                 ];
         }
 

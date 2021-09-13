@@ -17,5 +17,13 @@ class VehiclesTableSeeder extends Seeder
         Vehicle::create([
             'brand' => "Honda"
         ]);
+
+        Vehicle::create([
+            'brand' => "Mitsubishi"
+        ]);
+
+        Vehicle::create([
+            'brand' => "Toyota"
+        ]);
     }
 }
