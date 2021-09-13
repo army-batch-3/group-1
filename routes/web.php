@@ -6,6 +6,7 @@ use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\WarehouseController;
 use App\Http\Controllers\AssetController;
 use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\RestockController;
 
 /*
 |--------------------------------------------------------------------------
@@ -56,10 +57,14 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::put('/asset/update/{id}', [AssetController::class, 'update'])->name('asset.update');
 	Route::delete('/asset/delete/{id}', [AssetController::class, 'delete'])->name('asset.delete');
 
-		//Employee
-		Route::post('/employee', [EmployeeController::class, 'create'])->name('employee.create');
-		Route::put('/employee/update/{id}', [EmployeeController::class, 'update'])->name('employee.update');
-		Route::delete('/employee/delete/{id}', [EmployeeController::class, 'delete'])->name('employee.delete');
+	//Employee
+	Route::post('/employee', [EmployeeController::class, 'create'])->name('employee.create');
+	Route::put('/employee/update/{id}', [EmployeeController::class, 'update'])->name('employee.update');
+	Route::delete('/employee/delete/{id}', [EmployeeController::class, 'delete'])->name('employee.delete');
+
+	//Restock
+	Route::post('/restock', [RestockController::class, 'create'])->name('restock.create');
+	Route::put('/restock/update/{id}', [RestockController::class, 'update'])->name('restock.update');
 });
 
 Route::post('/test', 'App\Http\Controllers\PageController@test')->name('test');

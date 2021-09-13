@@ -78,6 +78,12 @@
                     <p>{{ __('Employees') }}</p>
                 </a>
             </li>
+            <li class="{{ $elementActive == 'restocks' ? 'active' : '' }}">
+                <a href="{{ route('page.index', 'restocks') }}">
+                    <i class="nc-icon nc-app"></i>
+                    <p>{{ __('Restock') }}</p>
+                </a>
+            </li>
             {{-- <li class="{{ $elementActive == 'reports' ? 'active' : '' }}">
                 <a href="{{ route('page.index', 'reports') }}">
                     <i class="nc-icon nc-single-copy-04"></i>

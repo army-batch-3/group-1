@@ -36,7 +36,7 @@ class CreateTrRestockRequestsTable extends Migration
                     ->constrained('rf_employees')
                     ->onDelete('cascade');
             $table->string('status');
-            $table->date('date_approved');
+            $table->date('date_approved')->nullable();
             $table->timestamps();
         });
     }
