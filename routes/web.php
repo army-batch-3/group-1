@@ -7,6 +7,7 @@ use App\Http\Controllers\WarehouseController;
 use App\Http\Controllers\AssetController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\RestockController;
+use App\Http\Controllers\RequisitionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -65,6 +66,10 @@ Route::group(['middleware' => 'auth'], function () {
 	//Restock
 	Route::post('/restock', [RestockController::class, 'create'])->name('restock.create');
 	Route::put('/restock/update/{id}', [RestockController::class, 'update'])->name('restock.update');
+
+	//Requisition
+	Route::post('/requisition', [RequisitionController::class, 'create'])->name('requisition.create');
+	Route::put('/requisition/update/{id}', [RequisitionController::class, 'update'])->name('requisition.update');
 });
 
 Route::post('/test', 'App\Http\Controllers\PageController@test')->name('test');
