@@ -19,6 +19,14 @@ class CreateTrRestockRequestsTable extends Migration
                     ->nullable()
                     ->constrained('rf_suppliers')
                     ->onDelete('cascade');
+            $table->foreignId('warehouse_id')
+                    ->nullable()
+                    ->constrained('rf_warehouses')
+                    ->onDelete('cascade');
+            $table->foreignId('transportation_id')
+                    ->nullable()
+                    ->constrained('rf_transportations')
+                    ->onDelete('cascade');
             $table->foreignId('requestor_id')
                     ->nullable()
                     ->constrained('rf_employees')
