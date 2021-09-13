@@ -64,3 +64,4 @@ Route::group(['middleware' => 'auth'], function () {
 
 Route::post('/test', 'App\Http\Controllers\PageController@test')->name('test');
 
+//https://docs.google.com/presentation/d/13Yqp9_tDOhSdSpWcC0MGFr1zoAEKchzr2EHfX523mH0/edit#slide=id.gee485c7f1b_0_0
