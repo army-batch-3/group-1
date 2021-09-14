@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\RestockRequest;
 use App\Models\RestockItem;
+use App\Models\Transportation;
 use App\Models\Asset;
 use \Carbon\Carbon;
 
@@ -23,8 +24,6 @@ class RestockController extends Controller
 
     public function create()
     {
-        
-
         $data = RestockRequest::create([
             'supplier_id' => $this->request->supplier_id,
             'warehouse_id' => $this->request->warehouse_id,
@@ -44,32 +43,47 @@ class RestockController extends Controller
 
     public function update($id)
     {
-        $restock = RestockRequest::find($id);
+        $restock_item = RestockItem::find($id);
 
-        
-        if($restock->status != 'Recieved')
+        $restock = RestockRequest::find($restock_item->restock_id);
+        $transportation = Transportation::find($restock->transportation_id);
+
+        if($this->request->status != 'Recieved') 
         {
-            if($this->request->status != 'Recieved') 
-            {
-                $restock->update([
-                    'status' => $this->request->status,
-                    'date_approved' => $this->request->status == 'Approved' ? Carbon::now() : null
-                ]);
-            } 
-            else 
-            {
-                $asset = Asset::find($this->request->asset_item_id);
+            $restock->update([
+                'status' => $this->request->status,
+                'date_approved' => $this->request->status == 'Approved' ? Carbon::now() : $restock->date_approved
+            ]);
 
-                $total_asset = $asset->number_of_stocks + $this->request->number_of_stocks;
-
-                $restock->update([
-                    'status' => $this->request->status,
-                ]);
-
-                $asset->update([
-                    'number_of_stocks' => $total_asset,
+            if($this->request->status == 'Shipped') {
+                $transportation->update([
+                    'type' => 'Delivery'
                 ]);
             }
+                
+            if($this->request->status == 'Dropped Off') {
+                $transportation->update([
+                    'type' => 'Available'
+                ]);
+            }
+        }
+        else 
+        {
+            $asset = Asset::find($this->request->asset_item_id);
+
+            $total_asset = $asset->number_of_stocks + $this->request->number_of_stocks;
+
+            $restock->update([
+                'status' => $this->request->status,
+            ]);
+
+            $restock_item->update([
+                'quantity' => '0'
+            ]);
+
+            $asset->update([
+                'number_of_stocks' => $total_asset,
+            ]);
         }
         
         return redirect()->route('page.index', 'restocks');

@@ -32,15 +32,6 @@
                                         Status
                                     </th>
                                     <th>
-                                        Supplier
-                                    </th>
-                                    <th>
-                                        Warehouse
-                                    </th>
-                                    <th>
-                                        Transportation
-                                    </th>
-                                    <th>
                                         Date Approved
                                     </th>
                                     <th>
@@ -49,11 +40,13 @@
                                 </thead>
                                 
                                 <tbody class="text-center">
-                                    @isset($data->restock)
-                                        @foreach ($data->restock as $entity)
+                                    @isset($data->requisition)
+                                        @foreach ($data->requisition as $entity)
                                         <tr>
                                             <td>
-                                                <img src="{{ URL::asset('storage/'.$entity->asset_photo) }}" width="150" alt="" class="">
+                                                <p class="text-center">
+                                                    <img src="{{ URL::asset('storage/'.$entity->asset_photo) }}" width="150" alt="" class="">
+                                                </p>
                                             </td>
                                             <td>
                                                 {{ $entity->asset }}
@@ -63,15 +56,6 @@
                                             </td>
                                             <td>
                                                 {{ $entity->status }}
-                                            </td>
-                                            <td>
-                                                {{ $entity->supplier }}
-                                            </td>
-                                            <td>
-                                                {{ $entity->warehouse }}
-                                            </td>
-                                            <td>
-                                                {{ $entity->transportation }}
                                             </td>
                                             <td>
                                                 {{ $entity->date_approved }}
@@ -92,7 +76,7 @@
 
                                         <!-- Edit Modal -->
                                         <div class="modal fade " id="editModal{{$entity->asset_id}}" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
-                                            <form method="POST" action="{{ URL::route('restock.update', $entity->restock_request_id) }}" enctype="multipart/form-data">
+                                            <form method="POST" action="{{ URL::route('requisition.update', $entity->requisition_request_id) }}" enctype="multipart/form-data">
                                                 <div class="modal-dialog" role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
@@ -180,7 +164,7 @@
 
    <!-- Add Modal -->
    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <form method="POST" action="{{ URL::route('restock.create') }}">
+    <form method="POST" action="{{ URL::route('requisition.create') }}">
         <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -196,16 +180,17 @@
                     <input type="number" class="form-control" name="quantity" required> 
                 </div>
                 <div class="mb-3">
-                    <label class="form-label">Asset</label>
-                    <select class="form-control" name="asset_id">
+                    <label class="form-label">Asset <small>Show assets </small></label>
+                    
+                    <select class="form-control" name="asset_id" required>
                         @isset($data)
                             @foreach ($data->assets as $entity)
-                                <option value="{{ $entity->id }}">{{ $entity->name }}</option>
+                                <option value="{{ $entity->id }}" @if($entity->number_of_stocks != 0) disabled @endif >{{ $entity->name }} &nbsp;&nbsp;|&nbsp;&nbsp; Quantity: {{ $entity->number_of_stocks }}</option>
                             @endforeach
                         @endisset
                     </select>
                 </div>
-                <div class="mb-3">
+                {{-- <div class="mb-3">
                     <label class="form-label">Supplier</label>
                     <select class="form-control" name="supplier_id">
                         @isset($data)
@@ -234,7 +219,7 @@
                             @endforeach
                         @endisset
                     </select>
-                </div>
+                </div> --}}
             </div>
             <div class="modal-footer">
                 <div class="left-side">

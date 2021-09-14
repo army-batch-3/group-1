@@ -87,33 +87,22 @@ class PageController extends Controller
             $data = $this->getRestockData();
         }
         else if($page == 'requisitions') {
-            $suppliers = Supplier::all();
-            $warehouses = Warehouse::all();
-
             $assets = DB::table('rf_assets as a')
                 ->join('rf_suppliers as s', 's.id', '=', 'a.supplier_id')
                 ->join('rf_warehouses as w', 'w.id', '=', 'a.warehouse_id')
                 ->select('a.id', 'a.name', 'a.photo', 'a.number_of_stocks', 'a.type', 'a.price', 's.name as supplier', 'w.name as warehouse', 's.id as supplier_id', 'w.id as warehouse_id')
                 ->get();
 
-            $transportations = DB::table('rf_transportations as t')
-                ->join('rf_vehicles as v', 'v.id', '=', 't.vehicle_id')
-                ->select('t.type', 't.plate_number', 'v.brand as vehicle', 't.id', 'v.id as vehicle_id')
-                ->get();
-
             $requisition = DB::table('tr_requisition_items as i')
                 ->join('tr_requisition_requests as q', 'q.id', '=', 'i.requisition_id')
                 ->join('rf_assets as a', 'a.id', '=', 'i.asset_id')
-                ->join('rf_employees as t', 't.id', '=', 'q.requestor_id')
-                ->select('i.id as asset_id', 'q.id as requisition_request_id', 'i.asset_id as asset_item_id','a.name as asset', 'a.photo as asset_photo', 
-                    'q.status', 'q.date_approved')
+                ->select('i.id as asset_id', 'q.id as requisition_request_id', 'i.asset_id as asset_item_id', 'a.name as asset', 'a.photo as asset_photo', 
+                    'i.quantity', 'q.status',  'q.date_approved')
+                
                 ->get();
 
             $data = (object) [
-                    "suppliers" => $suppliers,
-                    "warehouses" => $warehouses,
                     "assets" => $assets,
-                    "transportations" => $transportations,
                     "requisition" => $requisition
                 ];
         }
@@ -143,7 +132,7 @@ class PageController extends Controller
             ->join('rf_suppliers as s', 's.id', '=', 'q.supplier_id')
             ->join('rf_warehouses as w', 'w.id', '=', 'q.warehouse_id')
             ->join('rf_transportations as t', 't.id', '=', 'q.transportation_id')
-            ->select('i.id as asset_id', 'q.id as restock_request_id', 'i.asset_id as asset_item_id','a.name as asset', 'a.photo as asset_photo', 's.name as supplier', 's.logo as supplier_logo',
+            ->select('i.id as restock_id', 'q.id as restock_request_id', 'i.asset_id as asset_item_id','a.name as asset', 'a.photo as asset_photo', 's.name as supplier', 's.logo as supplier_logo',
                 'w.name as warehouse', 't.plate_number as transportation', 'i.quantity', 'q.status', 'q.date_approved')
             ->get();
         

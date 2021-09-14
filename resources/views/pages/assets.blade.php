@@ -106,10 +106,9 @@
                                                             <label class="form-label">Name</label>
                                                             <input type="text" class="form-control" name="name" value="{{ $entity->name }}" required> 
                                                         </div>
-                                                        <div class="mb-3">
-                                                            <label class="form-label">Number of Stocks</label>
-                                                            <input type="text" class="form-control" name="number_of_stocks" value="{{ $entity->number_of_stocks }}"> 
-                                                        </div>
+                                                        
+                                                        <input type="text" class="form-control" name="number_of_stocks" value="{{ $entity->number_of_stocks }}" hidden> 
+                                                     
                                                         <div class="mb-3">
                                                             <label class="form-label">Type</label>
                                                             <input type="text" class="form-control" name="type" value="{{ $entity->type }}"> 
@@ -216,10 +215,7 @@
                         <label class="form-label">Name</label>
                         <input type="text" class="form-control" name="name" required> 
                     </div>
-                    <div class="mb-3">
-                        <label class="form-label">Number of Stocks</label>
-                        <input type="text" class="form-control" name="number_of_stocks" > 
-                    </div>
+                    <input type="text" class="form-control" name="number_of_stocks" value="0" hidden> 
                     <div class="mb-3">
                         <label class="form-label">Type</label>
                         <input type="text" class="form-control" name="type" > 

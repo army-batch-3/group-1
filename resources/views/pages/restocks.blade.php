@@ -51,9 +51,11 @@
                                 <tbody>
                                     @isset($data->restock)
                                         @foreach ($data->restock as $entity)
-                                        <tr>
+                                        <tr @if ($entity->status == 'Closed') class="table-danger" @endif>
                                             <td>
-                                                <img src="{{ URL::asset('storage/'.$entity->asset_photo) }}" width="150" alt="" class="">
+                                                <p class="text-center">
+                                                    <img src="{{ URL::asset('storage/'.$entity->asset_photo) }}" width="150" alt="" class="">
+                                                </p>
                                             </td>
                                             <td>
                                                 {{ $entity->asset }}
@@ -78,7 +80,7 @@
                                             </td>
                                             <td>
                                                 <div class="row d-flex justify-content-center">
-                                                    <button class="btn btn-warning btn-fab btn-icon btn-sm btn-round" data-toggle="modal" data-target="#editModal{{$entity->asset_id}}">
+                                                    <button class="btn btn-warning btn-fab btn-icon btn-sm btn-round" data-toggle="modal" data-target="#editModal{{$entity->restock_id}}">
                                                         <i class="fa fa-edit"></i>
                                                     </button>
                                                     {{-- <div class="px-2"></div>
@@ -91,8 +93,8 @@
                                         </tr>
 
                                         <!-- Edit Modal -->
-                                        <div class="modal fade " id="editModal{{$entity->asset_id}}" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
-                                            <form method="POST" action="{{ URL::route('restock.update', $entity->restock_request_id) }}" enctype="multipart/form-data">
+                                        <div class="modal fade " id="editModal{{$entity->restock_id}}" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+                                            <form method="POST" action="{{ URL::route('restock.update', $entity->restock_id) }}" enctype="multipart/form-data">
                                                 <div class="modal-dialog" role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
@@ -104,21 +106,25 @@
                                                     <div class="modal-body">
                                                         @csrf @method('PUT')
 
-                                                        <input type="text" class="form-control" name="asset_item_id" value="{{ $entity->asset_item_id }}">  
-                                                        <input type="text" class="form-control" name="number_of_stocks" value="{{ $entity->quantity }}">  
-                                                          
-                                                        <div class="mb-3">
-                                                            <label class="form-label">Status</label>
+                                                        <input type="text" class="form-control" name="asset_item_id" value="{{ $entity->asset_item_id }}" hidden>  
+                                                        <input type="text" class="form-control" name="number_of_stocks" value="{{ $entity->quantity }}" hidden>  
+                                                        <div class="mb-4">
+                                                            <label class="form-label">Current Status</label>
+                                                            <input type="text" class="form-control" value="{{ $entity->status }}" disabled> 
+                                                        </div>
+                                                        <div class="mb-2">
+                                                            <label class="form-label">Select Status</label>
                                                             <select class="form-control" name="status">
-                                                                @isset($data)
-                                                                    <option value="" selected="selected" ></option>
+                                                                @if ($entity->status != 'Closed')
                                                                     <option value="Pending">Pending</option>
                                                                     <option value="Approved">Approved</option>
                                                                     <option value="Shipped">Shipped</option>
-                                                                    <option value=">Dropped Off">Dropped Off</option>
+                                                                    <option value="Dropped Off">Dropped Off</option>
                                                                     <option value="Recieved">Recieved</option>
                                                                     <option value="Closed">Closed</option>
-                                                                @endisset
+                                                                @else
+                                                                    <option value="Closed" disabled selected>Closed</option>
+                                                                @endif
                                                             </select>
                                                         </div>
                                                     </div>
@@ -128,7 +134,7 @@
                                                         </div>
                                                         <div class="divider"></div>
                                                         <div class="right-side">
-                                                            <button type="submit" class="btn btn-warning btn-link">Submit</button>
+                                                            <button type="submit" class="btn btn-warning btn-link" @if ($entity->status == 'Closed') disabled @endif>Submit</button>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -200,7 +206,7 @@
                         <select class="form-control" name="asset_id">
                             @isset($data)
                                 @foreach ($data->assets as $entity)
-                                    <option value="{{ $entity->id }}">{{ $entity->name }}</option>
+                                <option value="{{ $entity->id }}" @if($entity->number_of_stocks != 0) disabled @endif >{{ $entity->name }} &nbsp;&nbsp;|&nbsp;&nbsp; Quantity: {{ $entity->number_of_stocks }}</option>
                                 @endforeach
                             @endisset
                         </select>
@@ -230,7 +236,9 @@
                         <select class="form-control" name="transportation_id">
                             @isset($data)
                                 @foreach ($data->transportations as $entity)
-                                    <option value="{{ $entity->id }}">{{ $entity->plate_number }}</option>
+                                    @if ($entity->type != 'Delivery')
+                                        <option value="{{ $entity->id }}">{{ $entity->plate_number }}</option>
+                                    @endif
                                 @endforeach
                             @endisset
                         </select>
