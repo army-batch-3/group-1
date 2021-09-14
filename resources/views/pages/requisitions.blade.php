@@ -18,7 +18,7 @@
                     <div class="card-body">
                         <div class="">
                             <table class="table hover" id="table">
-                                <thead class="text-sm text-primary">
+                                <thead class="text-sm text-primary text-center">
                                     <th>
                                         Photo
                                     </th>
@@ -43,15 +43,15 @@
                                     <th>
                                         Date Approved
                                     </th>
-                                    <th class="text-center">
+                                    <th>
                                         Actions
                                     </th>
                                 </thead>
                                 
-                                <tbody>
+                                <tbody class="text-center">
                                     @isset($data->restock)
                                         @foreach ($data->restock as $entity)
-                                        <tr class="text-center">
+                                        <tr>
                                             <td>
                                                 <img src="{{ URL::asset('storage/'.$entity->asset_photo) }}" width="150" alt="" class="">
                                             </td>

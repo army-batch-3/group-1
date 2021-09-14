@@ -16,7 +16,7 @@
                     </div>
                     <div class="card-body">
                         <div class="">
-                            <table class="table hover table-striped" id="table">
+                            <table class="table hover table-striped text-center" id="table">
                                 <thead class=" text-primary">
                                     <th>
                                         Type
@@ -27,7 +27,7 @@
                                     <th>
                                         Plate No.
                                     </th>
-                                    <th class="text-center">
+                                    <th>
                                         Actions
                                     </th>
                                 </thead>

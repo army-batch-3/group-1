@@ -16,7 +16,7 @@
                     </div>
                     <div class="card-body">
                         <div class="">
-                            <table class="table hover compact" id="table">
+                            <table class="table hover compact text-center" id="table">
                                 <thead class="text-sm text-primary">
                                     <th>
                                         Name
@@ -39,7 +39,7 @@
                                     <th>
                                         Contact Number
                                     </th>
-                                    <th class="text-center">
+                                    <th>
                                         Actions
                                     </th>
                                 </thead>
@@ -47,7 +47,7 @@
                                 <tbody>
                                     @isset($data)
                                         @foreach ($data as $entity)
-                                        <tr class="text-center">
+                                        <tr>
                                             <td>
                                                 {{ $entity->name }}
                                             </td>

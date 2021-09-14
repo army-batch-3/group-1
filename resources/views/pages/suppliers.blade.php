@@ -17,7 +17,7 @@
                     <div class="card-body">
                         <div class="">
                             <table class="table hover" id="table">
-                                <thead class="text-sm text-primary">
+                                <thead class="text-sm text-primary text-center">
                                     <th>
                                         Logo
                                     </th>
@@ -36,7 +36,7 @@
                                     <th>
                                         Address
                                     </th>
-                                    <th class="text-center">
+                                    <th>
                                         Actions
                                     </th>
                                 </thead>
@@ -44,9 +44,11 @@
                                 <tbody>
                                     @isset($data)
                                         @foreach ($data as $entity)
-                                        <tr class="text-center">
+                                        <tr>
                                             <td>
-                                                <img src="{{ URL::asset('storage/'.$entity->logo) }}" width="150" alt="" class="">
+                                                <p class="text-center">
+                                                    <img src="{{ URL::asset('storage/'.$entity->logo) }}" width="150" alt="" class="">
+                                                </p>
                                             </td>
                                             <td>
                                                 {{ $entity->name }}
