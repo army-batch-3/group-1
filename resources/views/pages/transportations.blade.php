@@ -28,6 +28,9 @@
                                         Plate No.
                                     </th>
                                     <th>
+                                       Status
+                                    </th>
+                                    <th>
                                         Actions
                                     </th>
                                 </thead>
@@ -44,6 +47,9 @@
                                             </td>
                                             <td>
                                                 {{ $entity->plate_number }}
+                                            </td>
+                                            <td>
+                                                {{ $entity->status }}
                                             </td>
                                             <td>
                                                 <div class="row d-flex justify-content-center">

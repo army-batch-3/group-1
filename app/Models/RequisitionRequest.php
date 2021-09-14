@@ -12,6 +12,7 @@ class RequisitionRequest extends Model
     protected $fillable = [
         'requestor_id',
         'approver_id',
+        'transportation_id',
         'status',
         'date_approved'
     ];

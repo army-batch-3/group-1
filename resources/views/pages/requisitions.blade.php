@@ -14,7 +14,6 @@
                             Requisite Asset
                         </button>
                     </div>
-                    
                     <div class="card-body">
                         <div class="">
                             <table class="table hover" id="table">
@@ -32,6 +31,9 @@
                                         Status
                                     </th>
                                     <th>
+                                        Tranportation
+                                    </th>
+                                    <th>
                                         Date Approved
                                     </th>
                                     <th>
@@ -42,7 +44,7 @@
                                 <tbody class="text-center">
                                     @isset($data->requisition)
                                         @foreach ($data->requisition as $entity)
-                                        <tr>
+                                        <tr @if ($entity->status == 'Closed') class="table-danger" @endif>
                                             <td>
                                                 <p class="text-center">
                                                     <img src="{{ URL::asset('storage/'.$entity->asset_photo) }}" width="150" alt="" class="">
@@ -58,11 +60,14 @@
                                                 {{ $entity->status }}
                                             </td>
                                             <td>
+                                                {{ $entity->transportation }}
+                                            </td>
+                                            <td>
                                                 {{ $entity->date_approved }}
                                             </td>
                                             <td>
                                                 <div class="row d-flex justify-content-center">
-                                                    <button class="btn btn-warning btn-fab btn-icon btn-sm btn-round" data-toggle="modal" data-target="#editModal{{$entity->asset_id}}">
+                                                    <button class="btn btn-warning btn-fab btn-icon btn-sm btn-round" data-toggle="modal" data-target="#editModal{{$entity->requisition_id}}">
                                                         <i class="fa fa-edit"></i>
                                                     </button>
                                                     {{-- <div class="px-2"></div>
@@ -75,7 +80,7 @@
                                         </tr>
 
                                         <!-- Edit Modal -->
-                                        <div class="modal fade " id="editModal{{$entity->asset_id}}" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+                                        <div class="modal fade " id="editModal{{$entity->requisition_id}}" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
                                             <form method="POST" action="{{ URL::route('requisition.update', $entity->requisition_request_id) }}" enctype="multipart/form-data">
                                                 <div class="modal-dialog" role="document">
                                                 <div class="modal-content">
@@ -88,21 +93,25 @@
                                                     <div class="modal-body">
                                                         @csrf @method('PUT')
 
-                                                        <input type="text" class="form-control" name="asset_item_id" value="{{ $entity->asset_item_id }}">  
-                                                        <input type="text" class="form-control" name="number_of_stocks" value="{{ $entity->quantity }}">  
-                                                          
-                                                        <div class="mb-3">
-                                                            <label class="form-label">Status</label>
+                                                        <input type="text" class="form-control" name="asset_item_id" value="{{ $entity->asset_item_id }}" hidden>  
+                                                        <input type="text" class="form-control" name="number_of_stocks" value="{{ $entity->quantity }}" hidden>  
+                                                        <div class="mb-4">
+                                                            <label class="form-label">Current Status</label>
+                                                            <input type="text" class="form-control" value="{{ $entity->status }}" disabled> 
+                                                        </div>
+                                                        <div class="mb-2">
+                                                            <label class="form-label">Select Status</label>
                                                             <select class="form-control" name="status">
-                                                                @isset($data)
-                                                                    <option value="" selected="selected" ></option>
+                                                                @if ($entity->status != 'Closed')
                                                                     <option value="Pending">Pending</option>
                                                                     <option value="Approved">Approved</option>
                                                                     <option value="Shipped">Shipped</option>
-                                                                    <option value=">Dropped Off">Dropped Off</option>
+                                                                    <option value="Dropped Off">Dropped Off</option>
                                                                     <option value="Recieved">Recieved</option>
                                                                     <option value="Closed">Closed</option>
-                                                                @endisset
+                                                                @else
+                                                                    <option value="Closed" disabled selected>Closed</option>
+                                                                @endif
                                                             </select>
                                                         </div>
                                                     </div>
@@ -112,7 +121,7 @@
                                                         </div>
                                                         <div class="divider"></div>
                                                         <div class="right-side">
-                                                            <button type="submit" class="btn btn-warning btn-link">Submit</button>
+                                                            <button type="submit" class="btn btn-warning btn-link" @if ($entity->status == 'Closed') disabled @endif>Submit</button>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -180,32 +189,11 @@
                     <input type="number" class="form-control" name="quantity" required> 
                 </div>
                 <div class="mb-3">
-                    <label class="form-label">Asset <small>Show assets </small></label>
-                    
+                    <label class="form-label">Asset</label>
                     <select class="form-control" name="asset_id" required>
                         @isset($data)
                             @foreach ($data->assets as $entity)
-                                <option value="{{ $entity->id }}" @if($entity->number_of_stocks != 0) disabled @endif >{{ $entity->name }} &nbsp;&nbsp;|&nbsp;&nbsp; Quantity: {{ $entity->number_of_stocks }}</option>
-                            @endforeach
-                        @endisset
-                    </select>
-                </div>
-                {{-- <div class="mb-3">
-                    <label class="form-label">Supplier</label>
-                    <select class="form-control" name="supplier_id">
-                        @isset($data)
-                            @foreach ($data->suppliers as $entity)
-                                <option value="{{ $entity->id }}">{{ $entity->name }}</option>
-                            @endforeach
-                        @endisset
-                    </select>
-                </div>
-                <div class="mb-3">
-                    <label class="form-label">Warehouse</label>
-                    <select class="form-control" name="warehouse_id">
-                        @isset($data)
-                            @foreach ($data->warehouses as $entity)
-                                <option value="{{ $entity->id }}">{{ $entity->name }}</option>
+                                <option value="{{ $entity->id }}" @if($entity->number_of_stocks == '0') disabled @endif >{{ $entity->name }} &nbsp;&nbsp;|&nbsp;&nbsp; Quantity: {{ $entity->number_of_stocks }}</option>
                             @endforeach
                         @endisset
                     </select>
@@ -215,11 +203,13 @@
                     <select class="form-control" name="transportation_id">
                         @isset($data)
                             @foreach ($data->transportations as $entity)
-                                <option value="{{ $entity->id }}">{{ $entity->plate_number }}</option>
+                                @if ($entity->status == 'Available')
+                                    <option value="{{ $entity->id }}">{{ $entity->plate_number }}</option>
+                                @endif
                             @endforeach
                         @endisset
                     </select>
-                </div> --}}
+                </div>
             </div>
             <div class="modal-footer">
                 <div class="left-side">

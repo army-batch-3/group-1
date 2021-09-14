@@ -57,13 +57,13 @@ class RestockController extends Controller
 
             if($this->request->status == 'Shipped') {
                 $transportation->update([
-                    'type' => 'Delivery'
+                    'status' => 'Delivery'
                 ]);
             }
                 
             if($this->request->status == 'Dropped Off') {
                 $transportation->update([
-                    'type' => 'Available'
+                    'status' => 'Available'
                 ]);
             }
         }

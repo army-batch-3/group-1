@@ -23,6 +23,10 @@ class CreateTrRequisitionRequestsTable extends Migration
                     ->nullable()
                     ->constrained('rf_employees')
                     ->onDelete('cascade');
+            $table->foreignId('transportation_id')
+                    ->nullable()
+                    ->constrained('rf_transportations')
+                    ->onDelete('cascade');
             $table->string('status');
             $table->date('date_approved')->nullable();
             $table->timestamps();

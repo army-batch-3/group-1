@@ -15,33 +15,38 @@ class TransportationsSeeder extends Seeder
     public function run()
     {
         Transportation::create([
-            'type' => 'Available',
+            'type' => 'Delivery',
             'vehicle_id' => 1,
-            'plate_number' => 'ABC 123'
+            'plate_number' => 'ABC 123',
+            'status' => 'Available'
         ]);
 
         Transportation::create([
-            'type' => 'Available',
+            'type' => 'Delivery',
             'vehicle_id' => 1,
-            'plate_number' => 'EFG 456'
+            'plate_number' => 'EFG 456',
+            'status' => 'Available'
         ]);
 
         Transportation::create([
-            'type' => 'Available',
+            'type' => 'Delivery',
             'vehicle_id' => 2,
-            'plate_number' => 'XYZ 090'
+            'plate_number' => 'XYZ 090',
+            'status' => 'Available'
         ]);
 
         Transportation::create([
-            'type' => 'Available',
+            'type' => 'Delivery',
             'vehicle_id' => 2,
-            'plate_number' => 'YTY 899'
+            'plate_number' => 'YTY 899',
+            'status' => 'Available'
         ]);
 
         Transportation::create([
-            'type' => 'Available',
+            'type' => 'Delivery',
             'vehicle_id' => 3,
-            'plate_number' => 'YHW 316'
+            'plate_number' => 'YHW 316',
+            'status' => 'Available'
         ]);
     }
 }
