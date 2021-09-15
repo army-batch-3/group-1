@@ -12,6 +12,8 @@ class RestockRequest extends Model
 
     protected $fillable = [
         'supplier_id',
+        'warehouse_id',
+        'transportation_id',
         'requestor_id',
         'approver_id',
         'status',

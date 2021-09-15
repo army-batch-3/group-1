@@ -1,6 +1,6 @@
 @extends('layouts.app', [
     'class' => '',
-    'elementActive' => 'map'
+    'elementActive' => 'fleet'
 ])
 
 @section('content')
@@ -12,7 +12,7 @@
                         Google Maps
                     </div>
                     <div class="card-body ">
-                        <div id="map" class="map"></div>
+                        {{-- <div id="map" class="map"></div> --}}
                     </div>
                 </div>
             </div>

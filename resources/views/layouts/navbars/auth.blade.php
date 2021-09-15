@@ -42,54 +42,66 @@
                     </ul>
                 </div>
             </li> --}}
-            <li class="{{ $elementActive == 'icons' ? 'active' : '' }}">
-                <a href="{{ route('page.index', 'icons') }}">
+            <li class="{{ $elementActive == 'users' ? 'active' : '' }}">
+                <a href="{{ route('page.index', 'users') }}">
                     <i class="fa fa-users"></i>
                     <p>{{ __('Users') }}</p>
                 </a>
             </li>
-            <li class="{{ $elementActive == 'map' ? 'active' : '' }}">
-                <a href="{{ route('page.index', 'map') }}">
+            <li class="{{ $elementActive == 'transportations' ? 'active' : '' }}">
+                <a href="{{ route('page.index', 'transportations') }}">
                     <i class="nc-icon nc-bus-front-12"></i>
                     <p>{{ __('Transportations') }}</p>
                 </a>
             </li>
-            <li class="{{ $elementActive == 'notifications' ? 'active' : '' }}">
-                <a href="{{ route('page.index', 'notifications') }}">
+            <li class="{{ $elementActive == 'suppliers' ? 'active' : '' }}">
+                <a href="{{ route('page.index', 'suppliers') }}">
                     <i class="nc-icon nc-box"></i>
                     <p>{{ __('Suppliers') }}</p>
                 </a>
             </li>
-            <li class="{{ $elementActive == 'tables' ? 'active' : '' }}">
-                <a href="{{ route('page.index', 'tables') }}">
+            <li class="{{ $elementActive == 'warehouse' ? 'active' : '' }}">
+                <a href="{{ route('page.index', 'warehouse') }}">
                     <i class="nc-icon nc-shop"></i>
                     <p>{{ __('Warehouse') }}</p>
                 </a>
             </li>
-            <li class="{{ $elementActive == 'typography' ? 'active' : '' }}">
-                <a href="{{ route('page.index', 'typography') }}">
+            <li class="{{ $elementActive == 'assets' ? 'active' : '' }}">
+                <a href="{{ route('page.index', 'assets') }}">
                     <i class="nc-icon nc-single-02"></i>
                     <p>{{ __('Assests') }}</p>
                 </a>
             </li>
-            <li class="{{ $elementActive == 'typography' ? 'active' : '' }}">
-                <a href="{{ route('page.index', 'typography') }}">
+            <li class="{{ $elementActive == 'employees' ? 'active' : '' }}">
+                <a href="{{ route('page.index', 'employees') }}">
                     <i class="nc-icon nc-badge"></i>
                     <p>{{ __('Employees') }}</p>
                 </a>
             </li>
-            <li class="{{ $elementActive == 'typography' ? 'active' : '' }}">
-                <a href="{{ route('page.index', 'typography') }}">
+            <li class="{{ $elementActive == 'restocks' ? 'active' : '' }}">
+                <a href="{{ route('page.index', 'restocks') }}">
+                    <i class="nc-icon nc-app"></i>
+                    <p>{{ __('Restock') }}</p>
+                </a>
+            </li>
+            <li class="{{ $elementActive == 'requisitions' ? 'active' : '' }}">
+                <a href="{{ route('page.index', 'requisitions') }}">
+                    <i class="nc-icon nc-app"></i>
+                    <p>{{ __('Requisition') }}</p>
+                </a>
+            </li>
+            {{-- <li class="{{ $elementActive == 'reports' ? 'active' : '' }}">
+                <a href="{{ route('page.index', 'reports') }}">
                     <i class="nc-icon nc-single-copy-04"></i>
                     <p>{{ __('Reports') }}</p>
                 </a>
             </li>
-            <li class="{{ $elementActive == 'typography' ? 'active' : '' }}">
-                <a href="{{ route('page.index', 'typography') }}">
+            <li class="{{ $elementActive == 'fleet' ? 'active' : '' }}">
+                <a href="{{ route('page.index', 'fleet') }}">
                     <i class="nc-icon nc-credit-card"></i>
                     <p>{{ __('Fleet') }}</p>
                 </a>
-            </li>
+            </li> --}}
         </ul>
     </div>
 </div>

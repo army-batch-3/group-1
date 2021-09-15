@@ -13,6 +13,7 @@ class Transportation extends Model
     protected $fillable = [
         'type',
         'vehicle_id',
+        'status',
         'plate_number'
     ];
 

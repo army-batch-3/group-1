@@ -21,6 +21,7 @@ class CreateRfTransportationsTable extends Migration
                     ->constrained('rf_vehicles')
                     ->onDelete('cascade');
             $table->char('plate_number')->unique();
+            $table->string('status')->nullable();
             $table->timestamps();
         });
     }

@@ -17,8 +17,8 @@ class CreateRfSuppliersTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
-            $table->string('logo');
-            $table->integer('contact_number');
+            $table->longText('logo')->nullable();
+            $table->string('contact_number');
             $table->string('contact_person');
             $table->longText('address');
             $table->timestamps();
