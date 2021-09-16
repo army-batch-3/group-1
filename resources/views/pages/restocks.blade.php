@@ -206,7 +206,7 @@
                         <select class="form-control" name="asset_id">
                             @isset($data)
                                 @foreach ($data->assets as $entity)
-                                    <option value="{{ $entity->id }}" @if($entity->number_of_stocks == '0') disabled @endif >{{ $entity->name }} &nbsp;&nbsp;|&nbsp;&nbsp; Quantity: {{ $entity->number_of_stocks }}</option>
+                                    <option value="{{ $entity->id }}" >{{ $entity->name }} &nbsp;&nbsp;|&nbsp;&nbsp; Quantity: {{ $entity->number_of_stocks }}</option>
                                 @endforeach
                             @endisset
                         </select>
