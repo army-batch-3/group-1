@@ -14,4 +14,5 @@ class Vehicle extends Model
     ];
 
     protected $table = 'rf_vehicles';
+
 }

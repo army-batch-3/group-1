@@ -16,4 +16,14 @@ class RequisitionItem extends Model
     ];
 
     protected $table = 'tr_requisition_items';
+
+    public function assets()
+    {
+        return $this->belongsTo(Asset::class,'asset_id', 'id');
+    }
+
+    public function requisitions()
+    {
+        return $this->belongsTo(RequisitionRequest::class,'requisition_id', 'id');
+    }
 }

@@ -18,4 +18,16 @@ class RequisitionRequest extends Model
     ];
 
     protected $table = 'tr_requisition_requests';
+
+    public function requestors()
+    {
+        return $this->belongsTo(RequisitionItem::class,'requestor_id', 'id');
+    }
+
+    public function approvers()
+    {
+        return $this->belongsTo(Employee::class,'approver_id', 'id');
+    }
+
+    
 }

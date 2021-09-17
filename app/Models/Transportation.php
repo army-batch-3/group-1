@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Vehicle;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Transportation extends Model
 {
@@ -17,4 +18,9 @@ class Transportation extends Model
     ];
 
     protected $table = 'rf_transportations';
+
+    public function vehicles()
+    {
+        return $this->belongsTo(Vehicle::class,'vehicle_id', 'id');
+    }
 }

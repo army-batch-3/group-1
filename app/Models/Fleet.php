@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Driver;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Fleet extends Model
 {
@@ -17,4 +18,9 @@ class Fleet extends Model
     ];
 
     protected $table = 'tr_fleets';
+
+    public function drivers()
+    {
+        return $this->belongsTo(Driver::class,'driver_id', 'id');
+    }
 }

@@ -16,4 +16,14 @@ class RestockItem extends Model
     ];
 
     protected $table = 'tr_restock_items';
+
+    public function assets()
+    {
+        return $this->belongsTo(Asset::class,'asset_id', 'id');
+    }
+
+    public function restocks()
+    {
+        return $this->belongsTo(RestockRequest::class,'restock_id', 'id');
+    }
 }
